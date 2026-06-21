@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS schema_migrations (
+id INTEGER PRIMARY KEY,
+filename TEXT NOT NULL UNIQUE,
+appliedAt TEXT NOT NULL
+);
