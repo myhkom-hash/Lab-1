@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дошка оголошень групи</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Дошка оголошень групи</h1>
+    </header>
+
+    <main class="container">
+        <div class="forms-column">
+            <!-- Форма для створення і редагування оголошень -->
+            <!-- ✓ Вимога: "Додати форму для створення та редагування" -->
+            <!-- ✓ Вимога: "Реалізувати клієнтську валідацію" -->
+            <section class="form-section">
+            <h2 id="formTitle">Створити оголошення</h2>
+            <div id="statusMessage" class="status-message"></div>
+            <form id="postForm" novalidate>
+                <div class="field">
+                    <label for="titleInput">Заголовок</label>
+                    <input type="text" id="titleInput" placeholder="Напр., Збори групи">
+                    <p class="error-text" id="titleError"></p>
+                </div>
+
+                <div class="field">
+                    <label for="categorySelect">Категорія</label>
+                    <select id="categorySelect">
+                        <option value="" disabled selected>Оберіть категорію</option>
+                        <option value="Навчання">Навчання</option>
+                        <option value="Події">Події</option>
+                        <option value="Різне">Різне</option>
+                    </select>
+                    <p class="error-text" id="categoryError"></p>
+                </div>
+
+                <div class="field">
+                    <label for="authorInput">Автор</label>
+                    <input type="text" id="authorInput" placeholder="Ваше ім'я">
+                    <p class="error-text" id="authorError"></p>
+                </div>
+
+                <div class="field">
+                    <label for="userIdInput">ID користувача</label>
+                    <input type="text" id="userIdInput" placeholder="Введіть userId" pattern="[0-9]*" inputmode="numeric">
+                    <p class="error-text" id="userIdError"></p>
+                </div>
+
+                <div class="field">
+                    <label for="statusSelect">Статус</label>
+                    <select id="statusSelect">
+                        <option value="draft">Чернетка</option>
+                        <option value="published">Опубліковано</option>
+                    </select>
+                    <p class="error-text" id="statusError"></p>
+                </div>
+
+                <div class="field">
+                    <label for="bodyInput">Текст оголошення</label>
+                    <textarea id="bodyInput" rows="4"></textarea>
+                    <p class="error-text" id="bodyError"></p>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" id="submitBtn">Додати</button>
+                    <button type="button" id="cancelEditBtn" class="secondary-button">Скасувати</button>
+                    <button type="button" id="resetBtn" class="secondary-button">Очистити</button>
+                </div>
+            </form>
+        </section>
+        <section class="form-section">
+            <h2 id="userFormTitle">Створити користувача</h2>
+            <div id="userStatusMessage" class="status-message"></div>
+            <form id="userForm" novalidate>
+                <div class="field">
+                    <label for="userNameInput">Ім'я користувача</label>
+                    <input type="text" id="userNameInput" placeholder="Введіть ім'я">
+                    <p class="error-text" id="userNameError"></p>
+                </div>
+                <div class="buttons">
+                    <button type="submit" id="userSubmitBtn">Додати</button>
+                    <button type="button" id="userCancelEditBtn" class="secondary-button" style="display: none;">Скасувати</button>
+                    <button type="button" id="userResetBtn" class="secondary-button">Очистити</button>
+                </div>
+            </form>
+        </section>
+        <section class="form-section">
+            <h2 id="commentFormTitle">Створити коментар</h2>
+            <div id="commentStatusMessage" class="status-message"></div>
+            <form id="commentForm" novalidate>
+                <div class="field">
+                    <label for="commentPostIdInput">ID посту</label>
+                    <input type="text" id="commentPostIdInput" placeholder="Введіть ID посту" pattern="[0-9]*" inputmode="numeric">
+                    <p class="error-text" id="commentPostIdError"></p>
+                </div>
+                <div class="field">
+                    <label for="commentUserIdInput">ID користувача</label>
+                    <input type="text" id="commentUserIdInput" placeholder="Введіть ID користувача" pattern="[0-9]*" inputmode="numeric">
+                    <p class="error-text" id="commentUserIdError"></p>
+                </div>
+                <div class="field">
+                    <label for="commentBodyInput">Текст коментаря</label>
+                    <textarea id="commentBodyInput" rows="4"></textarea>
+                    <p class="error-text" id="commentBodyError"></p>
+                </div>
+                <div class="buttons">
+                    <button type="submit" id="commentSubmitBtn">Додати</button>
+                    <button type="button" id="commentCancelEditBtn" class="secondary-button" style="display: none;">Скасувати</button>
+                    <button type="button" id="commentResetBtn" class="secondary-button">Очистити</button>
+                </div>
+            </form>
+        </section>
+        </div>
+        <!-- Списки оголошень і користувачів -->
+        <div class="tables-column">
+            <!-- Таблиця зі списком оголошень з усіма CRUD діями -->
+            <!-- ✓ Вимога: "Вивести дані списком/таблицею (мінімум 3–5 полів DTO)" -->
+            <!-- ✓ Вимога: "Реалізувати стани: Завантаження, Немає даних, Помилка" -->
+            <section class="list-section">
+                <h2>Список оголошень</h2>
+                <table id="postsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Заголовок</th>
+                            <th>Категорія</th>
+                            <th>Автор</th>
+                            <th>Статус</th>
+                            <th>Дата</th>
+                            <th>Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody id="postsTableBody"></tbody>
+                </table>
+                <div id="tableState" class="table-state"></div>
+            </section>
+
+            <section class="users-section">
+                <h2>Список Користувачів</h2>
+                <label> <h3>Загальна кількість користувачів: <span id="currentUsersCount"></span></h3></label>
+                <table id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>Автор</th>
+                            <th>ID</th>
+                            <th>Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody"></tbody>
+                </table>
+                <div id="usersTableState" class="table-state"></div>
+            </section>
+
+            <section class="comments-section">
+                <h2>Список Коментарів</h2>
+                <label class="top-post-section">
+                <h3>Пост з найбільшою кількістю коментарів:</h3>
+                <div id="topCommentedPost" class="top-post-info">Немає даних</div>
+                </label>
+                <table id="commentsTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Пост</th>
+                            <th>Користувач</th>
+                            <th>Текст</th>
+                            <th>Дата</th>
+                            <th>Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody id="commentsTableBody"></tbody>
+                </table>
+                <div id="commentsTableState" class="table-state"></div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Деталі окремого оголошення -->
+    <!-- ✓ Вимога: "GET /api/v1/<MainEntity>/{id} – деталі (або перегляд одного запису)" -->
+    <section class="details-section" id="detailsSection" hidden>
+        <h2>Деталі оголошення</h2>
+        <div id="detailsContent"></div>
+    </section>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
