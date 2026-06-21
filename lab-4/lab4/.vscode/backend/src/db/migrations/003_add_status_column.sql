@@ -1,1 +1,0 @@
-ALTER TABLE Posts ADD COLUMN status TEXT NOT NULL DEFAULT 'draft';
