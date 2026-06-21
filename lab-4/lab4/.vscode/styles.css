@@ -1,0 +1,234 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.forms-column,
+.tables-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: #fff;
+    border: 1px solid #d1d1d1;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.form-section,
+.list-section,
+.users-section,
+.comments-section,
+.details-section {
+    background: transparent;
+    padding: 20px;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid #d1d1d1;
+    box-shadow: none;
+    box-sizing: border-box;
+}
+
+.form-section:last-child,
+.list-section:last-child,
+.users-section:last-child,
+.comments-section:last-child,
+.details-section:last-child {
+    border-bottom: none;
+}
+
+.form-section {
+    width: 100%;
+}
+
+.forms-column {
+    flex: 0 0 340px;
+    min-width: 340px;
+}
+
+.tables-column {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.list-section,
+.users-section,
+.comments-section {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.details-section {
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .container {
+        flex-wrap: wrap;
+    }
+
+    .forms-column,
+    .tables-column {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 700px) {
+    .container {
+        gap: 16px;
+    }
+
+    button,
+    .action-buttons button {
+        width: 100%;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+}
+
+.field {
+    margin-bottom: 16px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 700;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #c2c2c2;
+    border-radius: 6px;
+    background: #fafafa;
+}
+
+.field input.invalid,
+.field select.invalid,
+.field textarea.invalid {
+    border-color: #d9534f;
+}
+
+.error-text {
+    margin: 6px 0 0;
+    font-size: 13px;
+    color: #d9534f;
+    min-height: 18px;
+}
+
+.status-message {
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.status-message.info {
+    background: #e8f3ff;
+    color: #0f4c81;
+    border: 1px solid #b8d7ff;
+}
+
+.status-message.success {
+    background: #ecf7ed;
+    color: #256029;
+    border: 1px solid #b6e2c0;
+}
+
+.status-message.error {
+    background: #fbebec;
+    color: #8b1d23;
+    border: 1px solid #f5c2c7;
+}
+
+.table-state {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #6a6a6a;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 640px;
+}
+
+th,
+td {
+    border: 1px solid #d9d9d9;
+    padding: 12px 14px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: 700;
+}
+
+button {
+    padding: 10px 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    background: #007bff;
+    color: #fff;
+    transition: background 0.2s ease;
+}
+
+button.secondary-button {
+    background: #e8e8e8;
+    color: #333;
+}
+
+button:hover {
+    background: #0062c4;
+}
+
+button.secondary-button:hover {
+    background: #d3d3d3;
+}
+
+button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.details-item {
+    margin-bottom: 10px;
+}
+
+.details-item span {
+    font-weight: 700;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.action-buttons button {
+    flex: 0 1 auto;
+    white-space: nowrap;
+}

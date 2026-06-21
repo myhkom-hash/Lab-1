@@ -1,0 +1,33 @@
+-- src/db/schema.sql
+
+CREATE TABLE IF NOT EXISTS Users (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL UNIQUE,
+  createdAt TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Posts (
+  id INTEGER PRIMARY KEY,
+  userId INTEGER NOT NULL,
+  title TEXT NOT NULL,
+  category TEXT NOT NULL,
+  author TEXT NOT NULL,
+  body TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'draft',
+  createdAt TEXT NOT NULL,
+  FOREIGN KEY (userId) REFERENCES Users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Comments (
+  id INTEGER PRIMARY KEY,
+  postId INTEGER NOT NULL,
+  userId INTEGER NOT NULL,
+  body TEXT NOT NULL,
+  createdAt TEXT NOT NULL,
+  FOREIGN KEY (postId) REFERENCES Posts(id) ON DELETE CASCADE,
+  FOREIGN KEY (userId) REFERENCES Users(id) ON DELETE RESTRICT
+);
+
+CREATE INDEX IF NOT EXISTS idx_posts_userId ON Posts(userId);
+CREATE INDEX IF NOT EXISTS idx_comments_postId ON Comments(postId);
+CREATE INDEX IF NOT EXISTS idx_comments_userId ON Comments(userId);
